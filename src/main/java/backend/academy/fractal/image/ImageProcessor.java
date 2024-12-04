@@ -1,4 +1,8 @@
 package backend.academy.fractal.image;
 
-public class ImageProcessor {
+import backend.academy.fractal.model.FractalImage;
+
+@FunctionalInterface
+public interface ImageProcessor {
+    void process(FractalImage image);
 }

@@ -1,4 +1,4 @@
-package backend.academy.fractal.object;
+package backend.academy.fractal.image;
 
 public enum ImageFormat {
     JPEG,
