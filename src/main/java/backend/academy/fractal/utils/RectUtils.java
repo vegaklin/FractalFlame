@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RectUtils {
 
-    public static Point randomPoint(Rect rect, ThreadLocalRandom random) {
+    public static Point randomPointInRect(Rect rect, ThreadLocalRandom random) {
         return new Point(
             rect.x() + random.nextDouble() * rect.width(),
             rect.y() + random.nextDouble() * rect.height()
