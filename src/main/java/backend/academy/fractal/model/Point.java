@@ -1,4 +1,3 @@
 package backend.academy.fractal.model;
 
-public class Point {
-}
+public record Point(double x, double y) {}

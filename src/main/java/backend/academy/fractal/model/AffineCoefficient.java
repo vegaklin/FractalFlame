@@ -1,4 +1,5 @@
 package backend.academy.fractal.model;
 
-public class AffineCoefficient {
-}
+import java.awt.Color;
+
+public record AffineCoefficient(double a, double b, double c, double d, double e, double f, Color color) {}
