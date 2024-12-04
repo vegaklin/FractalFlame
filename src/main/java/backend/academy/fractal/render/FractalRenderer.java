@@ -7,18 +7,16 @@ import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.transformation.AffineTransformation;
 import backend.academy.fractal.transformation.Transformation;
 import backend.academy.fractal.utils.ImageUtil;
-import backend.academy.fractal.utils.TransformationUtils;
+import backend.academy.fractal.utils.RendererUtils;
 import backend.academy.fractal.utils.RectUtils;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import static backend.academy.fractal.utils.AffineCoefficientUtils.generateRandomAffineCoefficients;
+import static backend.academy.fractal.constant.FractalConstants.STEPS_FOR_CORRECTION;
+import static backend.academy.fractal.utils.RendererUtils.generateRandomAffineTransformations;
 
 public abstract class FractalRenderer implements Renderer {
-    private static final int STEPS_FOR_NORMALIZATION = 20;
-    private static final int AFFINE_COUNT = 15;
 
     protected final List<Transformation> variations;
     protected final int samples;
@@ -37,49 +35,38 @@ public abstract class FractalRenderer implements Renderer {
     @Override
     public FractalImage render(Rect world, int imageWidth, int imageHeight) {
         FractalImage image = FractalImage.create(imageWidth, imageHeight);
-        List<AffineTransformation> affineTransformations = generateAffineTransformations();
+        List<AffineTransformation> affineTransformations = generateRandomAffineTransformations();
 
-        renderAllImage(image, world, affineTransformations);
+        renderSamples(image, world, affineTransformations);
         return image;
     }
 
-    public abstract void renderAllImage(
+    public abstract void renderSamples(
         FractalImage image,
         Rect world,
         List<AffineTransformation> affineTransformations
     );
-
-    private List<AffineTransformation> generateAffineTransformations() {
-        List<AffineTransformation> affineTransformations = new ArrayList<>();
-        for (int i = 0; i < AFFINE_COUNT; i++) {
-            AffineTransformation transformation = new AffineTransformation(generateRandomAffineCoefficients(ThreadLocalRandom.current()));
-            affineTransformations.add(transformation);
-        }
-        return affineTransformations;
-    }
-
-    ///
 
     protected void renderOneSample(
         FractalImage canvas,
         Rect world,
         List<? extends AffineTransformation> affineTransformations
     ) {
-        Point currentPoint = RectUtils.randomPoint(world, ThreadLocalRandom.current());
+        Point currentPoint = RectUtils.randomPointInRect(world, ThreadLocalRandom.current());
 
-        for (int step = -STEPS_FOR_NORMALIZATION; step < iterPerSample; step++) {
-            AffineTransformation affine = TransformationUtils.random(affineTransformations, ThreadLocalRandom.current());
-            Transformation variation = TransformationUtils.random(variations, ThreadLocalRandom.current());
+        for (int step = -STEPS_FOR_CORRECTION; step < iterPerSample; step++) {
+            AffineTransformation affineTransformation = RendererUtils.randomTransformation(affineTransformations, ThreadLocalRandom.current());
+            Transformation transformation = RendererUtils.randomTransformation(variations, ThreadLocalRandom.current());
 
-            currentPoint = affine.apply(currentPoint);
-            currentPoint = variation.apply(currentPoint);
+            currentPoint = affineTransformation.apply(currentPoint);
+            currentPoint = transformation.apply(currentPoint);
 
             if (step > 0 && world.contains(currentPoint)) {
                 int x = mapRange(world.x(), world.width(), 0, canvas.width(), currentPoint.x());
                 int y = mapRange(world.y(), world.height(), 0, canvas.height(), currentPoint.y());
 
                 if (canvas.contains(x, y)) {
-                    Color color = affine.affineCoefficient().color();
+                    Color color = affineTransformation.affineCoefficient().color();
                     Pixel pixel = canvas.pixel(x, y);
                     pixel.saturateHitCount(color);
 
@@ -101,29 +88,23 @@ public abstract class FractalRenderer implements Renderer {
 //        return canvas;
     }
 
-    private Point randomPoint(Rect world, Random random) {
-        double x = world.x() + world.width() * random.nextDouble();
-        double y = world.y() + world.height() * random.nextDouble();
-        return new Point(x, y);
-    }
-
     private int mapRange(double srcMin, double srcMax, int dstMin, int dstMax, double value) {
 //        return dstMax + (int) (((srcMax - value) / (srcMax - srcMin)) * dstMax);
         return (int) ((value - srcMin) / srcMax * dstMax);
     }
 
-    private void processPoint(Rect world, FractalImage image, Point point, AffineTransformation affine) {
-        if (!world.contains(point)) {
-            return;
-        }
-        Pixel pixel = ImageUtil.resolvePixel(world, point, image);
-        if (pixel != null) {
-            synchronized (pixel) {
-                Color color = affine.affineCoefficient().color();
-                pixel.saturateHitCount(color);
-            }
-        }
-    }
+//    private void processPoint(Rect world, FractalImage image, Point point, AffineTransformation affine) {
+//        if (!world.contains(point)) {
+//            return;
+//        }
+//        Pixel pixel = ImageUtil.resolvePixel(world, point, image);
+//        if (pixel != null) {
+//            synchronized (pixel) {
+//                Color color = affine.affineCoefficient().color();
+//                pixel.saturateHitCount(color);
+//            }
+//        }
+//    }
 //    public FractalImage render(
 //        FractalImage canvas,
 //        Rect world,

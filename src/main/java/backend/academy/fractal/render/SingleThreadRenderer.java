@@ -17,7 +17,7 @@ public class SingleThreadRenderer extends FractalRenderer {
     }
 
     @Override
-    public void renderAllImage(
+    public void renderSamples(
         FractalImage image,
         Rect world,
         List<AffineTransformation> affineTransformations
