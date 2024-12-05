@@ -1,4 +1,4 @@
-package backend.academy.fractal.image;
+package backend.academy.fractal.image.correction;
 
 import backend.academy.fractal.model.FractalImage;
 
