@@ -28,9 +28,9 @@ public class ImageUtils {
             for (int x = 0; x < image.width(); x++) {
                 Pixel pixel = image.pixel(x, y);
                 pixel.normal(image.pixel(x, y).normal() / max);
-                pixel.red((int) (pixel.red() * Math.pow(pixel.normal(), (1.0 / gamma))));
-                pixel.green((int) (pixel.green() * Math.pow(pixel.normal(), (1.0 / gamma))));
-                pixel.blue((int) (pixel.blue() * Math.pow(pixel.normal(), (1.0 / gamma))));
+                pixel.r((int) (pixel.r() * Math.pow(pixel.normal(), (1.0 / gamma))));
+                pixel.g((int) (pixel.g() * Math.pow(pixel.normal(), (1.0 / gamma))));
+                pixel.b((int) (pixel.b() * Math.pow(pixel.normal(), (1.0 / gamma))));
             }
         }
 
@@ -38,7 +38,7 @@ public class ImageUtils {
         for (int y = 0; y < image.height(); y++) {
             for (int x = 0; x < image.width(); x++) {
                 Pixel pixel = image.pixel(x, y);
-                Color color = new Color(pixel.red(), pixel.green(), pixel.blue());
+                Color color = new Color(pixel.r(), pixel.g(), pixel.b());
                 renderedImage.setRGB(x, y, color.getRGB());
             }
         }

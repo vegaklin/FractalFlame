@@ -6,9 +6,9 @@ import backend.academy.fractal.transformation.AffineTransformation;
 import backend.academy.fractal.transformation.Transformation;
 import java.util.List;
 
-public class SingleThreadRenderer extends FractalRenderer {
+public class OneThreadRenderer extends FractalRenderer {
 
-    public SingleThreadRenderer(
+    public OneThreadRenderer(
         List<Transformation> variations,
         int samples,
         int iterPerSample

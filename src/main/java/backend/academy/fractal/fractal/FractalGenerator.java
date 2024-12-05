@@ -5,7 +5,7 @@ import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.render.FractalRenderer;
 import backend.academy.fractal.render.MultiThreadGenerator;
-import backend.academy.fractal.render.SingleThreadRenderer;
+import backend.academy.fractal.render.OneThreadRenderer;
 import backend.academy.fractal.utils.ImageUtils;
 import lombok.SneakyThrows;
 import java.nio.file.Path;
@@ -38,6 +38,6 @@ public class FractalGenerator {
     private FractalRenderer chooseFractalRenderer() {
         return IS_MULTI_THREAD ?
             new MultiThreadGenerator(TRANSFORMATIONS, SAMPLES, ITERATIONS) :
-            new SingleThreadRenderer(TRANSFORMATIONS, SAMPLES, ITERATIONS);
+            new OneThreadRenderer(TRANSFORMATIONS, SAMPLES, ITERATIONS);
     }
 }

@@ -2,11 +2,10 @@ package backend.academy.fractal.utils;
 
 import backend.academy.fractal.model.AffineCoefficient;
 import java.awt.Color;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import static backend.academy.fractal.constant.FractalConstants.MAX_COLOR_NUMBER;
 
 public class AffineCoefficientUtils {
-    private static final int MAX_COLOR_RANGE = 255;
 
     public static AffineCoefficient generateRandomAffineCoefficients(ThreadLocalRandom random) {
         double a = random.nextDouble(-1, 1);
@@ -47,6 +46,6 @@ public class AffineCoefficientUtils {
     }
 
     private static int generateRandomRGB(ThreadLocalRandom random) {
-        return random.nextInt(MAX_COLOR_RANGE);
+        return random.nextInt(MAX_COLOR_NUMBER);
     }
 }
