@@ -17,8 +17,9 @@ import static backend.academy.fractal.constant.FractalConstants.RECT_X;
 import static backend.academy.fractal.constant.FractalConstants.RECT_Y;
 import static backend.academy.fractal.constant.FractalConstants.RENDERER_TYPE;
 import static backend.academy.fractal.constant.FractalConstants.SAMPLES;
-import static backend.academy.fractal.constant.FractalConstants.TRANSFORMATIONS;
+import static backend.academy.fractal.constant.FractalConstants.TRANSFORMATION_TYPES;
 import static backend.academy.fractal.factory.RendererFactory.createRenderer;
+import static backend.academy.fractal.factory.TransformationFactory.createAllTransformations;
 
 public class FractalGenerator {
 
@@ -33,7 +34,12 @@ public class FractalGenerator {
 
     public void start() {
         Rect world = createRect();
-        Renderer renderer = createRenderer(RENDERER_TYPE, TRANSFORMATIONS, SAMPLES, ITERATIONS);
+        Renderer renderer = createRenderer(
+            RENDERER_TYPE,
+            createAllTransformations(TRANSFORMATION_TYPES),
+            SAMPLES,
+            ITERATIONS
+        );
 
         FractalImage image = renderer.render(world, IMAGE_WITH, IMAGE_HEIGHT);
 

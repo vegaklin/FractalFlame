@@ -3,7 +3,9 @@ package backend.academy.fractal.factory;
 import backend.academy.fractal.image.save.ImageFormat;
 import backend.academy.fractal.image.save.ImageFormatSaver;
 import backend.academy.fractal.image.save.ImageSaver;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class ImageSaveFactory {
 
     public static ImageSaver createImageSaver(ImageFormat format) {

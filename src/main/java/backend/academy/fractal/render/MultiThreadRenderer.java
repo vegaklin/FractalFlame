@@ -4,10 +4,10 @@ import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.transformation.AffineTransformation;
 import backend.academy.fractal.transformation.Transformation;
-import lombok.extern.log4j.Log4j2;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.log4j.Log4j2;
 import static backend.academy.fractal.constant.FractalConstants.THREAD_COUNT;
 
 @Log4j2

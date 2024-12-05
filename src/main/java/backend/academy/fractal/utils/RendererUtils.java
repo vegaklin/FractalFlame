@@ -8,9 +8,11 @@ import backend.academy.fractal.transformation.AffineTransformation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.experimental.UtilityClass;
 import static backend.academy.fractal.constant.FractalConstants.AFFINE_COUNT;
 import static backend.academy.fractal.utils.AffineCoefficientUtils.generateRandomAffineCoefficients;
 
+@UtilityClass
 public class RendererUtils {
 
     public static Point randomPointInRect(Rect world, ThreadLocalRandom random) {
@@ -23,7 +25,9 @@ public class RendererUtils {
     public static List<AffineTransformation> generateRandomAffineTransformations() {
         List<AffineTransformation> affineTransformations = new ArrayList<>();
         for (int i = 0; i < AFFINE_COUNT; i++) {
-            AffineTransformation transformation = new AffineTransformation(generateRandomAffineCoefficients(ThreadLocalRandom.current()));
+            AffineTransformation transformation = new AffineTransformation(
+                generateRandomAffineCoefficients(ThreadLocalRandom.current())
+            );
             affineTransformations.add(transformation);
         }
         return affineTransformations;

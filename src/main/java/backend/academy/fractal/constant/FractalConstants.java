@@ -3,14 +3,14 @@ package backend.academy.fractal.constant;
 import backend.academy.fractal.image.correction.ImageCorrectionType;
 import backend.academy.fractal.image.save.ImageFormat;
 import backend.academy.fractal.render.RendererType;
-import backend.academy.fractal.transformation.HeartTransformation;
-import backend.academy.fractal.transformation.SphereTransformation;
-import backend.academy.fractal.transformation.Transformation;
+import backend.academy.fractal.transformation.TransformationType;
 import java.util.List;
+import lombok.experimental.UtilityClass;
 import static backend.academy.fractal.image.correction.ImageCorrectionType.GAMMA_CORRECTION;
 import static backend.academy.fractal.image.save.ImageFormat.PNG;
 import static backend.academy.fractal.render.RendererType.MULTI_THREAD;
 
+@UtilityClass
 public class FractalConstants {
     public static final int THREAD_COUNT = 4;
 
@@ -31,10 +31,8 @@ public class FractalConstants {
     public static final int SAMPLES = 100;
     public static final int ITERATIONS = 10000;
 
-    public static final List<Transformation> TRANSFORMATIONS = List.of(
-        new SphereTransformation(),
-//        new DiskTransformation()
-        new HeartTransformation()
+    public static final List<TransformationType> TRANSFORMATION_TYPES = List.of(
+        TransformationType.SPHERE
     );
 
     public static final double GAMMA = 2.2;

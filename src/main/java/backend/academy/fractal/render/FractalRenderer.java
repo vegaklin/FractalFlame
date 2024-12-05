@@ -6,7 +6,6 @@ import backend.academy.fractal.model.Point;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.transformation.AffineTransformation;
 import backend.academy.fractal.transformation.Transformation;
-import backend.academy.fractal.utils.RendererUtils;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import static backend.academy.fractal.constant.FractalConstants.STEPS_FOR_CORRECTION;
@@ -15,6 +14,7 @@ import static backend.academy.fractal.utils.RendererUtils.calculateCoordinates;
 import static backend.academy.fractal.utils.RendererUtils.generateRandomAffineTransformations;
 import static backend.academy.fractal.utils.RendererUtils.generateSymmetricPoints;
 import static backend.academy.fractal.utils.RendererUtils.randomPointInRect;
+import static backend.academy.fractal.utils.RendererUtils.randomTransformation;
 
 public abstract class FractalRenderer implements Renderer {
 
@@ -55,8 +55,11 @@ public abstract class FractalRenderer implements Renderer {
         Point point = randomPointInRect(world, ThreadLocalRandom.current());
 
         for (int step = -STEPS_FOR_CORRECTION; step < iterPerSample; step++) {
-            AffineTransformation affineTransformation = RendererUtils.randomTransformation(affineTransformations, ThreadLocalRandom.current());
-            Transformation transformation = RendererUtils.randomTransformation(variations, ThreadLocalRandom.current());
+            AffineTransformation affineTransformation = randomTransformation(
+                affineTransformations,
+                ThreadLocalRandom.current()
+            );
+            Transformation transformation = randomTransformation(variations, ThreadLocalRandom.current());
 
             point = affineTransformation.apply(point);
             point = transformation.apply(point);

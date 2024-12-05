@@ -3,8 +3,10 @@ package backend.academy.fractal.utils;
 import backend.academy.fractal.model.AffineCoefficient;
 import java.awt.Color;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.experimental.UtilityClass;
 import static backend.academy.fractal.constant.FractalConstants.MAX_COLOR_NUMBER;
 
+@UtilityClass
 public class AffineCoefficientUtils {
 
     public static AffineCoefficient generateRandomAffineCoefficients(ThreadLocalRandom random) {

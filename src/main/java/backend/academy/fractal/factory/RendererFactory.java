@@ -6,7 +6,9 @@ import backend.academy.fractal.render.Renderer;
 import backend.academy.fractal.render.RendererType;
 import backend.academy.fractal.transformation.Transformation;
 import java.util.List;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class RendererFactory {
 
     public static Renderer createRenderer(

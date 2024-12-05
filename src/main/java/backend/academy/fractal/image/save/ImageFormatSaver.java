@@ -2,12 +2,13 @@ package backend.academy.fractal.image.save;
 
 import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Pixel;
-import lombok.extern.log4j.Log4j2;
-import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
+import javax.imageio.ImageIO;
+import lombok.extern.log4j.Log4j2;
+
 
 @Log4j2
 public class ImageFormatSaver implements ImageSaver {
