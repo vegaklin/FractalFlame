@@ -5,7 +5,9 @@ import backend.academy.fractal.image.save.ImageSaver;
 import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.render.Renderer;
+import backend.academy.fractal.transformation.Transformation;
 import java.nio.file.Path;
+import java.util.List;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_FORMAT;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_HEIGHT;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_PATH;
@@ -34,9 +36,11 @@ public class FractalGenerator {
 
     public void start() {
         Rect world = createRect();
+        List<Transformation> transformations = createAllTransformations(TRANSFORMATION_TYPES);
+
         Renderer renderer = createRenderer(
             RENDERER_TYPE,
-            createAllTransformations(TRANSFORMATION_TYPES),
+            transformations,
             SAMPLES,
             ITERATIONS
         );
@@ -50,4 +54,6 @@ public class FractalGenerator {
     private Rect createRect() {
         return new Rect(RECT_X, RECT_Y, RECT_WITH, RECT_HEIGHT);
     }
+
+
 }

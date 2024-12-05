@@ -9,6 +9,8 @@ import lombok.experimental.UtilityClass;
 import static backend.academy.fractal.image.correction.ImageCorrectionType.GAMMA_CORRECTION;
 import static backend.academy.fractal.image.save.ImageFormat.PNG;
 import static backend.academy.fractal.render.RendererType.MULTI_THREAD;
+import static backend.academy.fractal.transformation.TransformationType.POLAR;
+import static backend.academy.fractal.transformation.TransformationType.SPHERE;
 
 @UtilityClass
 public class FractalConstants {
@@ -18,28 +20,27 @@ public class FractalConstants {
 
     public static final int AFFINE_COUNT = 23;
 
-    public static final int SYMMETRY_COUNT = 5;
+    public static final int SYMMETRY_COUNT = 1;
 
     public static final int IMAGE_WITH = 1920;
-    public static final int IMAGE_HEIGHT = 1080;
-
-    public static final double RECT_X = -4;
-    public static final double RECT_Y = -3;
-    public static final double RECT_WITH = 8;
-    public static final double RECT_HEIGHT = 6;
+    public static final int IMAGE_HEIGHT = 1920;
 
     public static final int SAMPLES = 100;
-    public static final int ITERATIONS = 10000;
+    public static final int ITERATIONS = 100000;
+
+    public static final double RECT_X = -2;
+    public static final double RECT_Y = -2;
+    public static final double RECT_WITH = 4;
+    public static final double RECT_HEIGHT = 4;
 
     public static final List<TransformationType> TRANSFORMATION_TYPES = List.of(
-        TransformationType.SPHERE
+        SPHERE,
+        POLAR
     );
 
     public static final double GAMMA = 2.2;
     public static final ImageCorrectionType CORRECTION_TYPE = GAMMA_CORRECTION;
     public static final ImageFormat IMAGE_FORMAT = PNG;
-
-
 
     public static final int STEPS_FOR_CORRECTION = 20;
     public static final int MAX_COLOR_NUMBER = 255;

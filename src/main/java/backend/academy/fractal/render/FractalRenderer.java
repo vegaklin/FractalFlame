@@ -19,6 +19,7 @@ import static backend.academy.fractal.utils.RendererUtils.randomTransformation;
 public abstract class FractalRenderer implements Renderer {
 
     protected final List<Transformation> variations;
+
     protected final int samples;
     protected final int iterPerSample;
 
