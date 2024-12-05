@@ -6,43 +6,44 @@ import backend.academy.fractal.render.RendererType;
 import backend.academy.fractal.transformation.TransformationType;
 import java.util.List;
 import lombok.experimental.UtilityClass;
-import static backend.academy.fractal.image.correction.ImageCorrectionType.GAMMA_CORRECTION;
-import static backend.academy.fractal.image.save.ImageFormat.PNG;
-import static backend.academy.fractal.render.RendererType.MULTI_THREAD;
-import static backend.academy.fractal.transformation.TransformationType.POLAR;
-import static backend.academy.fractal.transformation.TransformationType.SPHERE;
 
 @UtilityClass
 public class FractalConstants {
-    public static final int THREAD_COUNT = 4;
+    private static final String YAML_FILE_PATH = "application.yaml";
 
-    public static final RendererType RENDERER_TYPE = MULTI_THREAD;
+    private final ConfigParser configParser = new ConfigParser(YAML_FILE_PATH);
 
-    public static final int AFFINE_COUNT = 23;
-
-    public static final int SYMMETRY_COUNT = 1;
-
-    public static final int IMAGE_WITH = 1920;
-    public static final int IMAGE_HEIGHT = 1920;
-
-    public static final int SAMPLES = 100;
-    public static final int ITERATIONS = 100000;
-
-    public static final double RECT_X = -2;
-    public static final double RECT_Y = -2;
-    public static final double RECT_WITH = 4;
-    public static final double RECT_HEIGHT = 4;
-
-    public static final List<TransformationType> TRANSFORMATION_TYPES = List.of(
-        SPHERE,
-        POLAR
+    public static final RendererType RENDERER_TYPE = RendererType.valueOf(
+        configParser.get("renderer-type", String.class)
     );
 
-    public static final double GAMMA = 2.2;
-    public static final ImageCorrectionType CORRECTION_TYPE = GAMMA_CORRECTION;
-    public static final ImageFormat IMAGE_FORMAT = PNG;
+    public static final int THREAD_COUNT = configParser.get("thread-count", Integer.class);
 
-    public static final int STEPS_FOR_CORRECTION = 20;
-    public static final int MAX_COLOR_NUMBER = 255;
-    public static final String IMAGE_PATH = "src/main/java/backend/academy/fractal/fractal.";
+    public static final int AFFINE_COUNT = configParser.get("affine-count", Integer.class);
+    public static final int SYMMETRY_COUNT = configParser.get("symmetry-count", Integer.class);
+
+    public static final int IMAGE_WITH = configParser.get("image-width", Integer.class);
+    public static final int IMAGE_HEIGHT = configParser.get("image-height", Integer.class);
+    public static final ImageFormat IMAGE_FORMAT = ImageFormat.valueOf(configParser.get("image-format", String.class));
+
+    public static final double RECT_X = configParser.get("rect-x", Double.class);
+    public static final double RECT_Y = configParser.get("rect-y", Double.class);
+    public static final double RECT_WITH = configParser.get("rect-width", Double.class);
+    public static final double RECT_HEIGHT = configParser.get("rect-height", Double.class);
+
+    public static final int SAMPLES = configParser.get("samples", Integer.class);
+    public static final int ITERATIONS = configParser.get("iterations", Integer.class);
+
+    public static final List<TransformationType> TRANSFORMATION_TYPES =
+        configParser.getTransformationTypes("transformation-types");
+
+    public static final ImageCorrectionType CORRECTION_TYPE =
+        ImageCorrectionType.valueOf(configParser.get("correction-type", String.class));
+
+    public static final double GAMMA = configParser.get("gamma", Double.class);
+
+    public static final int STEPS_FOR_CORRECTION = configParser.get("steps-for-correction", Integer.class);
+    public static final int MAX_COLOR_NUMBER = configParser.get("max-color-number", Integer.class);
+
+    public static final String IMAGE_PATH = configParser.get("image-path", String.class);
 }
