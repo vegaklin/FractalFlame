@@ -2,19 +2,19 @@ package backend.academy.fractal.constant;
 
 import backend.academy.fractal.image.correction.ImageCorrectionType;
 import backend.academy.fractal.image.save.ImageFormat;
-import backend.academy.fractal.transformation.DiskTransformation;
+import backend.academy.fractal.render.RendererType;
 import backend.academy.fractal.transformation.HeartTransformation;
-import backend.academy.fractal.transformation.PolarTransformation;
 import backend.academy.fractal.transformation.SphereTransformation;
 import backend.academy.fractal.transformation.Transformation;
 import java.util.List;
 import static backend.academy.fractal.image.correction.ImageCorrectionType.GAMMA_CORRECTION;
 import static backend.academy.fractal.image.save.ImageFormat.PNG;
+import static backend.academy.fractal.render.RendererType.MULTI_THREAD;
 
 public class FractalConstants {
     public static final int THREAD_COUNT = 4;
 
-    public static final boolean IS_MULTI_THREAD = true;
+    public static final RendererType RENDERER_TYPE = MULTI_THREAD;
 
     public static final int AFFINE_COUNT = 23;
 

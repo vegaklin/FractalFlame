@@ -4,23 +4,21 @@ import backend.academy.fractal.image.correction.ImageProcessor;
 import backend.academy.fractal.image.save.ImageSaver;
 import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
-import backend.academy.fractal.render.FractalRenderer;
-import backend.academy.fractal.render.MultiThreadGenerator;
-import backend.academy.fractal.render.OneThreadRenderer;
-import lombok.SneakyThrows;
+import backend.academy.fractal.render.Renderer;
 import java.nio.file.Path;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_FORMAT;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_HEIGHT;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_PATH;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_WITH;
-import static backend.academy.fractal.constant.FractalConstants.IS_MULTI_THREAD;
 import static backend.academy.fractal.constant.FractalConstants.ITERATIONS;
 import static backend.academy.fractal.constant.FractalConstants.RECT_HEIGHT;
 import static backend.academy.fractal.constant.FractalConstants.RECT_WITH;
 import static backend.academy.fractal.constant.FractalConstants.RECT_X;
 import static backend.academy.fractal.constant.FractalConstants.RECT_Y;
+import static backend.academy.fractal.constant.FractalConstants.RENDERER_TYPE;
 import static backend.academy.fractal.constant.FractalConstants.SAMPLES;
 import static backend.academy.fractal.constant.FractalConstants.TRANSFORMATIONS;
+import static backend.academy.fractal.factory.RendererFactory.createRenderer;
 
 public class FractalGenerator {
 
@@ -35,7 +33,7 @@ public class FractalGenerator {
 
     public void start() {
         Rect world = createRect();
-        FractalRenderer renderer = chooseFractalRenderer();
+        Renderer renderer = createRenderer(RENDERER_TYPE, TRANSFORMATIONS, SAMPLES, ITERATIONS);
 
         FractalImage image = renderer.render(world, IMAGE_WITH, IMAGE_HEIGHT);
 
@@ -45,11 +43,5 @@ public class FractalGenerator {
 
     private Rect createRect() {
         return new Rect(RECT_X, RECT_Y, RECT_WITH, RECT_HEIGHT);
-    }
-
-    private FractalRenderer chooseFractalRenderer() {
-        return IS_MULTI_THREAD ?
-            new MultiThreadGenerator(TRANSFORMATIONS, SAMPLES, ITERATIONS) :
-            new OneThreadRenderer(TRANSFORMATIONS, SAMPLES, ITERATIONS);
     }
 }

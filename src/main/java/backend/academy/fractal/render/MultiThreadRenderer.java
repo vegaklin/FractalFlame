@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit;
 import static backend.academy.fractal.constant.FractalConstants.THREAD_COUNT;
 
 @Log4j2
-public class MultiThreadGenerator  extends FractalRenderer {
+public class MultiThreadRenderer extends FractalRenderer {
 
-    public MultiThreadGenerator(
+    public MultiThreadRenderer(
         List<Transformation> variations,
         int samples,
         int iterPerSample
