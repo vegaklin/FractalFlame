@@ -1,0 +1,24 @@
+renderer-type: MULTI_THREAD
+thread-count: 8
+affine-count: 10
+symmetry-count: 1
+samples: 100000
+iterations: 1000
+image-width: 1000
+image-height: 1000
+image-format: PNG
+rect-x: -2
+rect-y: -2
+rect-width: 4
+rect-height: 4
+transformation-types:
+#    - DISK
+    - HEART
+#    - HYPERBOLIC
+#    - POLAR
+#    - SINUSOIDAL
+#    - SPHERE
+#    - SWIRL
+#    - WAVES
+correction-type: GAMMA_CORRECTION
+gamma: 1.8
