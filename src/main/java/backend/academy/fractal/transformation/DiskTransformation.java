@@ -3,6 +3,7 @@ package backend.academy.fractal.transformation;
 import backend.academy.fractal.model.Point;
 
 public class DiskTransformation implements Transformation {
+
     @Override
     public Point apply(Point p) {
         double x = p.x();
