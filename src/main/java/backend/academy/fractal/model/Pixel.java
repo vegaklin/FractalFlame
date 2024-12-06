@@ -14,6 +14,7 @@ public class Pixel {
     private int g;
     private int b;
     private int hitCount;
+
     private double normal;
 
     public void pixelProcessing(Color color) {

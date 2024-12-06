@@ -1,11 +1,11 @@
 renderer-type: MULTI_THREAD
 thread-count: 8
 affine-count: 10
-symmetry-count: 1
-samples: 100000
-iterations: 1000
-image-width: 1000
-image-height: 1000
+symmetry-count: 20
+samples: 10
+iterations: 1000000
+image-width: 800
+image-height: 800
 image-format: PNG
 rect-x: -2
 rect-y: -2
@@ -13,8 +13,8 @@ rect-width: 4
 rect-height: 4
 transformation-types:
 #    - DISK
-    - HEART
-#    - HYPERBOLIC
+#    - HEART
+    - HYPERBOLIC
 #    - POLAR
 #    - SINUSOIDAL
 #    - SPHERE

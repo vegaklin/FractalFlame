@@ -32,7 +32,11 @@ public class AffineCoefficientUtils {
             d,
             e,
             f,
-            new Color(generateRandomRGB(random), generateRandomRGB(random), generateRandomRGB(random))
+            new Color(
+                generateRandomRGB(random),
+                generateRandomRGB(random),
+                generateRandomRGB(random)
+            )
         );
     }
 
@@ -44,7 +48,8 @@ public class AffineCoefficientUtils {
     ) {
         return ((a * a + d * d) < 1)
             && ((b * b + e * e) < 1)
-            && ((a * a + b * b + d * d + e * e) < (1 + (a * e - b * d) * (a * e - b * d)));
+            && ((a * a + b * b + d * d + e * e) < (1 + (a * e - b * d) * (a * e - b * d))
+        );
     }
 
     private static int generateRandomRGB(ThreadLocalRandom random) {
