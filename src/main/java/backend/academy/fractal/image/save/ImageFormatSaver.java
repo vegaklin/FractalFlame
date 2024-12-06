@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
 import lombok.extern.log4j.Log4j2;
-
+import static backend.academy.fractal.constant.FractalConstants.IMAGE_PATH;
 
 @Log4j2
 public class ImageFormatSaver implements ImageSaver {
@@ -19,7 +19,9 @@ public class ImageFormatSaver implements ImageSaver {
     }
 
     @Override
-    public void save(FractalImage image, Path filename) {
+    public void save(FractalImage image) {
+        Path filename = Path.of(IMAGE_PATH + "." + imageFormat.name().toLowerCase());
+
         BufferedImage bufferedImage = new BufferedImage(image.width(), image.height(), BufferedImage.TYPE_INT_RGB);
         for (int y = 0; y < image.height(); y++) {
             for (int x = 0; x < image.width(); x++) {

@@ -30,11 +30,13 @@ public class ConfigParser {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String line;
             String currentKey = null;
-//            StringBuilder currentListValues = new StringBuilder();
             List<String> currentListValues = new ArrayList<>();
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
+                if (line.isEmpty() || line.startsWith("#")) {
+                    continue;
+                }
                 if (line.endsWith(":")) {
                     currentKey = line.substring(0, line.length() - 1).trim();
                 } else if (line.startsWith("- ")) {

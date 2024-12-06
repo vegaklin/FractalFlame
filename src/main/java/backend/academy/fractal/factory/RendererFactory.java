@@ -15,18 +15,26 @@ public class RendererFactory {
         RendererType type,
         List<Transformation> variations,
         int samples,
-        int iterPerSample
+        int iterPerSample,
+        int affineCount,
+        int symmetryCount,
+        int threadsCount
     ) {
         return switch (type) {
             case ONE_THREAD -> new OneThreadRenderer(
                 variations,
                 samples,
-                iterPerSample
+                iterPerSample,
+                affineCount,
+                symmetryCount
             );
             case MULTI_THREAD -> new MultiThreadRenderer(
                 variations,
                 samples,
-                iterPerSample
+                iterPerSample,
+                affineCount,
+                symmetryCount,
+                threadsCount
             );
         };
     }

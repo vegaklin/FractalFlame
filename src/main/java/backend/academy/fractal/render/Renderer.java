@@ -5,5 +5,5 @@ import backend.academy.fractal.model.Rect;
 
 @FunctionalInterface
 public interface Renderer {
-    FractalImage render(Rect world, int imageWidth, int imageHeight);
+    FractalImage render(Rect world, FractalImage canvas);
 }

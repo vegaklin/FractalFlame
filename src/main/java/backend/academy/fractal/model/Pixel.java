@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Pixel {
+
     private int r;
     private int g;
     private int b;

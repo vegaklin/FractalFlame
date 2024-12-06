@@ -8,17 +8,21 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.log4j.Log4j2;
-import static backend.academy.fractal.constant.FractalConstants.THREAD_COUNT;
 
 @Log4j2
 public class MultiThreadRenderer extends FractalRenderer {
+    private final int threadsCount;
 
     public MultiThreadRenderer(
         List<Transformation> variations,
         int samples,
-        int iterPerSample
+        int iterPerSample,
+        int affineCount,
+        int symmetryCount,
+        int threadsCount
     ) {
-        super(variations, samples, iterPerSample);
+        super(variations, samples, iterPerSample, affineCount, symmetryCount);
+        this.threadsCount = threadsCount;
     }
 
     @Override
@@ -27,7 +31,7 @@ public class MultiThreadRenderer extends FractalRenderer {
         Rect world,
         List<AffineTransformation> affineTransformations
     ) {
-        var executor = Executors.newFixedThreadPool(THREAD_COUNT);
+        var executor = Executors.newFixedThreadPool(threadsCount);
         try {
             for (int i = 0; i < samples; i++) {
                 executor.execute(() -> renderOneSample(image, world, affineTransformations));

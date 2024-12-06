@@ -8,14 +8,15 @@ import backend.academy.fractal.transformation.AffineTransformation;
 import backend.academy.fractal.transformation.Transformation;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.AllArgsConstructor;
 import static backend.academy.fractal.constant.FractalConstants.STEPS_FOR_CORRECTION;
-import static backend.academy.fractal.constant.FractalConstants.SYMMETRY_COUNT;
 import static backend.academy.fractal.utils.RendererUtils.calculateCoordinates;
 import static backend.academy.fractal.utils.RendererUtils.generateRandomAffineTransformations;
 import static backend.academy.fractal.utils.RendererUtils.generateSymmetricPoints;
 import static backend.academy.fractal.utils.RendererUtils.randomPointInRect;
 import static backend.academy.fractal.utils.RendererUtils.randomTransformation;
 
+@AllArgsConstructor
 public abstract class FractalRenderer implements Renderer {
 
     protected final List<Transformation> variations;
@@ -23,20 +24,13 @@ public abstract class FractalRenderer implements Renderer {
     protected final int samples;
     protected final int iterPerSample;
 
-    public FractalRenderer(
-        List<Transformation> variations,
-        int samples,
-        int iterPerSample
-    ) {
-        this.variations = variations;
-        this.samples = samples;
-        this.iterPerSample = iterPerSample;
-    }
+    private final int affineCount;
+    private final int symmetryCount;
 
     @Override
-    public FractalImage render(Rect world, int imageWidth, int imageHeight) {
-        FractalImage image = FractalImage.create(imageWidth, imageHeight);
-        List<AffineTransformation> affineTransformations = generateRandomAffineTransformations();
+    public FractalImage render(Rect world, FractalImage canvas) {
+        FractalImage image = FractalImage.create(canvas.width(), canvas.height());
+        List<AffineTransformation> affineTransformations = generateRandomAffineTransformations(affineCount);
 
         renderSamples(image, world, affineTransformations);
         return image;
@@ -77,23 +71,14 @@ public abstract class FractalRenderer implements Renderer {
         Point point,
         AffineTransformation affineTransformation
     ) {
-        List<Point> symmetricPoints = generateSymmetricPoints(point, SYMMETRY_COUNT);
+        List<Point> symmetricPoints = generateSymmetricPoints(point, symmetryCount);
         for (Point symmetricPoint : symmetricPoints) {
-            processPoint(image, world, symmetricPoint, affineTransformation);
-        }
-    }
-
-    private void processPoint(
-        FractalImage image,
-        Rect world,
-        Point symmetricPoint,
-        AffineTransformation affineTransformation
-    ) {
-        if (world.contains(symmetricPoint)) {
-            Pixel pixel = calculateCoordinates(image, world, symmetricPoint);
-            if (pixel != null) {
-                synchronized (pixel) {
-                    pixel.pixelProcessing(affineTransformation.affineCoefficient().color());
+            if (world.contains(symmetricPoint)) {
+                Pixel pixel = calculateCoordinates(image, world, symmetricPoint);
+                if (pixel != null) {
+                    synchronized (pixel) {
+                        pixel.pixelProcessing(affineTransformation.affineCoefficient().color());
+                    }
                 }
             }
         }

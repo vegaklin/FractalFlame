@@ -11,9 +11,11 @@ public class OneThreadRenderer extends FractalRenderer {
     public OneThreadRenderer(
         List<Transformation> variations,
         int samples,
-        int iterPerSample
+        int iterPerSample,
+        int affineCount,
+        int symmetryCount
     ) {
-        super(variations, samples, iterPerSample);
+        super(variations, samples, iterPerSample, affineCount, symmetryCount);
     }
 
     @Override
