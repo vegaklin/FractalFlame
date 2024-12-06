@@ -7,6 +7,7 @@ import java.awt.Color;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PixelTest {
+
     private Pixel pixel;
 
     @BeforeEach
@@ -37,7 +38,7 @@ public class PixelTest {
 
         pixel.r(100);
         pixel.g(123);
-        pixel.b(333);
+        pixel.b(222);
         pixel.hitCount(1);
         Color newColor = new Color(200, 100, 25);
 
@@ -48,8 +49,8 @@ public class PixelTest {
         // then
 
         assertThat(pixel.r()).isEqualTo((100 + 200) / 2);
-        assertThat(pixel.g()).isEqualTo((150 + 100) / 2);
-        assertThat(pixel.b()).isEqualTo((200 + 25) / 2);
+        assertThat(pixel.g()).isEqualTo((123 + 100) / 2);
+        assertThat(pixel.b()).isEqualTo((222 + 25) / 2);
         assertThat(pixel.hitCount()).isEqualTo(2);
     }
 
