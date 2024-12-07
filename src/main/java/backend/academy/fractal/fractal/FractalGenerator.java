@@ -6,7 +6,9 @@ import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.render.Renderer;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
 @AllArgsConstructor
 public class FractalGenerator {
 

@@ -1,9 +1,9 @@
 renderer-type: MULTI_THREAD
 thread-count: 8
-affine-count: 9
+affine-count: 10
 symmetry-count: 5
 samples: 10
-iterations: 1000000
+iterations: 100000
 image-width: 800
 image-height: 800
 image-format: PNG
@@ -21,4 +21,4 @@ transformation-types:
 #    - SWIRL
 #    - WAVES
 correction-type: GAMMA_CORRECTION
-gamma: 1.5
+gamma: 2.2

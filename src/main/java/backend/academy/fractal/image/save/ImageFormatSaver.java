@@ -7,9 +7,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_PATH;
 
+@Getter
 @Log4j2
 public class ImageFormatSaver implements ImageSaver {
     private final ImageFormat imageFormat;
