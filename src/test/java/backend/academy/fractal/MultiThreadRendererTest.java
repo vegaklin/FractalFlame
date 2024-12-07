@@ -3,6 +3,7 @@ package backend.academy.fractal;
 import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Pixel;
 import backend.academy.fractal.model.Rect;
+import backend.academy.fractal.render.MultiThreadRenderer;
 import backend.academy.fractal.render.OneThreadRenderer;
 import backend.academy.fractal.render.Renderer;
 import backend.academy.fractal.transformation.Transformation;
@@ -14,12 +15,12 @@ import static backend.academy.fractal.transformation.TransformationType.HEART;
 import static backend.academy.fractal.transformation.TransformationType.HYPERBOLIC;
 import static backend.academy.fractal.transformation.TransformationType.POLAR;
 import static backend.academy.fractal.transformation.TransformationType.SINUSOIDAL;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OneThreadRendererTest {
+public class MultiThreadRendererTest {
 
     @Test
     void checkRendererEmptyAfterZeroIterations() {
@@ -28,7 +29,7 @@ public class OneThreadRendererTest {
         List<Transformation> emptyVariations = createAllTransformations(
             List.of(DISK)
         );
-        OneThreadRenderer renderer = new OneThreadRenderer(emptyVariations, 10, 0, 5, 5);
+        Renderer renderer = new MultiThreadRenderer(emptyVariations, 10, 0, 5, 5, 8);
         Rect world = new Rect(-1, -1, 2, 2);
         FractalImage canvas = FractalImage.create(100, 100);
 
@@ -57,7 +58,7 @@ public class OneThreadRendererTest {
         List<Transformation> emptyVariations = createAllTransformations(
             List.of(DISK)
         );
-        Renderer renderer = new OneThreadRenderer(emptyVariations, 10, 1000, 5, 5);
+        Renderer renderer = new MultiThreadRenderer(emptyVariations, 10, 1000, 5, 5, 4);
         Rect world = new Rect(-1, -1, 2, 2);
         FractalImage canvas = FractalImage.create(100, 100);
 
@@ -85,7 +86,7 @@ public class OneThreadRendererTest {
         List<Transformation> emptyVariations = createAllTransformations(
             List.of(DISK, HEART, HYPERBOLIC, POLAR, SINUSOIDAL)
         );
-        Renderer renderer = new OneThreadRenderer(emptyVariations, 8, 10000, 3, 2);
+        Renderer renderer = new MultiThreadRenderer(emptyVariations, 8, 10000, 3, 2, 8);
         Rect world = new Rect(-1, -1, 2, 2);
         FractalImage canvas = FractalImage.create(10, 100);
 
