@@ -37,7 +37,7 @@ class FractalGeneratorTest {
     private FractalGenerator generator;
 
     @Test
-    void testStartMethod() {
+    void checkCorrectStart() {
         // given
 
         FractalImage renderedImage = mock(FractalImage.class);

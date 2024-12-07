@@ -9,10 +9,9 @@ public class SwirlTransformation implements Transformation {
         double x = p.x();
         double y = p.y();
         double r = Math.sqrt(x * x + y * y);
-        double theta = Math.atan2(y, x);
-        double newTheta = theta + r * r;
-        double newX = r * Math.cos(newTheta);
-        double newY = r * Math.sin(newTheta);
+        double theta = Math.atan2(y, x) + r * r;
+        double newX = r * Math.cos(theta);
+        double newY = r * Math.sin(theta);
         return new Point(newX, newY);
     }
 }

@@ -12,13 +12,13 @@ rect-y: -2
 rect-width: 4
 rect-height: 4
 transformation-types:
-#    - DISK
+    - DISK
 #    - HEART
 #    - HYPERBOLIC
 #    - POLAR
-    - SINUSOIDAL
+#    - SINUSOIDAL
 #    - SPHERE
 #    - SWIRL
-    - WAVES
+#    - WAVES
 correction-type: GAMMA_CORRECTION
 gamma: 1.5
