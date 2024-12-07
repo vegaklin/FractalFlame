@@ -4,7 +4,7 @@ import backend.academy.fractal.model.AffineCoefficient;
 import java.awt.Color;
 import java.util.concurrent.ThreadLocalRandom;
 import lombok.experimental.UtilityClass;
-import static backend.academy.fractal.constant.FractalConstants.MAX_COLOR_NUMBER;
+import static backend.academy.fractal.constant.FractalConstants.HSB_COLOR_COEFFICIENT;
 
 @UtilityClass
 public class AffineCoefficientUtils {
@@ -32,11 +32,7 @@ public class AffineCoefficientUtils {
             d,
             e,
             f,
-            new Color(
-                generateRandomRGB(random),
-                generateRandomRGB(random),
-                generateRandomRGB(random)
-            )
+            generateRandomColor(random)
         );
     }
 
@@ -52,7 +48,10 @@ public class AffineCoefficientUtils {
         );
     }
 
-    private static int generateRandomRGB(ThreadLocalRandom random) {
-        return random.nextInt(MAX_COLOR_NUMBER);
+    private static Color generateRandomColor(ThreadLocalRandom random) {
+        float color = random.nextFloat(0.04f, 0.23f);
+        float saturation = random.nextFloat() * HSB_COLOR_COEFFICIENT + HSB_COLOR_COEFFICIENT;
+        float brightness = random.nextFloat() * HSB_COLOR_COEFFICIENT + HSB_COLOR_COEFFICIENT;
+        return Color.getHSBColor(color, saturation, brightness);
     }
 }
