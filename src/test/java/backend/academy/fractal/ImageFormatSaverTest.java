@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import static backend.academy.fractal.constant.FractalConstants.IMAGE_PATH;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,27 +18,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ImageFormatSaverTest {
 
     @AfterEach
-    void cleanup() {
+    void cleanUpEach() throws IOException {
         for (ImageFormat format : ImageFormat.values()) {
             File file = new File(IMAGE_PATH + "." + format.name().toLowerCase());
-            if (file.exists()) {
-                file.delete();
-            }
+            Files.deleteIfExists(file.toPath());
         }
     }
 
     @Test
-    void testSaveJPEG() throws IOException {
+    void checkSaveJPEG() throws IOException {
         testImageSavingGivenFormat(ImageFormat.JPEG);
     }
 
     @Test
-    void testSavePNG() throws IOException {
+    void checkSavePNG() throws IOException {
         testImageSavingGivenFormat(ImageFormat.PNG);
     }
 
     @Test
-    void testSaveBMP() throws IOException {
+    void checkSaveBMP() throws IOException {
         testImageSavingGivenFormat(ImageFormat.BMP);
     }
 

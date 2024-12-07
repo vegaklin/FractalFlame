@@ -16,7 +16,7 @@ public class RectTest {
     }
 
     @Test
-    void shouldDeterminePointInsideRectangle() {
+    void checkDeterminePointInsideRectangle() {
         // given
 
         Point pont1 = new Point(5, 5);
@@ -40,7 +40,7 @@ public class RectTest {
     }
 
     @Test
-    void shouldDeterminePointOnEdgeOfRectangle() {
+    void checkDeterminePointOnEdgeOfRectangle() {
         // given
 
         Point pont1 = new Point(-1, 5);

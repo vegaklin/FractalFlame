@@ -49,7 +49,7 @@ public class AffineCoefficientUtils {
     }
 
     private static Color generateRandomColor(ThreadLocalRandom random) {
-        float color = random.nextFloat(0.04f, 0.23f);
+        float color = random.nextFloat();
         float saturation = random.nextFloat() * HSB_COLOR_COEFFICIENT + HSB_COLOR_COEFFICIENT;
         float brightness = random.nextFloat() * HSB_COLOR_COEFFICIENT + HSB_COLOR_COEFFICIENT;
         return Color.getHSBColor(color, saturation, brightness);
