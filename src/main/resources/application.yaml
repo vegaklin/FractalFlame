@@ -1,9 +1,9 @@
 renderer-type: MULTI_THREAD
 thread-count: 8
 affine-count: 19
-symmetry-count: 7
+symmetry-count: 1
 samples: 15
-iterations: 300000
+iterations: 30000
 image-width: 800
 image-height: 800
 image-format: PNG
@@ -17,8 +17,8 @@ transformation-types:
 #    - HYPERBOLIC
 #    - POLAR
 #    - SINUSOIDAL
-    - SPHERE
+#    - SPHERE
 #    - SWIRL
-#    - WAVES
+    - WAVES
 correction-type: GAMMA_CORRECTION
 gamma: 0.9
