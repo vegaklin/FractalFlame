@@ -6,17 +6,12 @@ import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.render.Renderer;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@AllArgsConstructor
-public class FractalGenerator {
-
-    private final FractalImage canvas;
-    private final Rect world;
-
-    private final Renderer renderer;
-
-    private final ImageProcessor imageProcessor;
-    private final ImageSaver imageSaver;
+//@Getter
+//@AllArgsConstructor
+public record FractalGenerator(FractalImage canvas, Rect world, Renderer renderer, ImageProcessor imageProcessor,
+                               ImageSaver imageSaver) {
 
     public void start() {
         FractalImage image = renderer.render(world, canvas);

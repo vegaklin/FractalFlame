@@ -4,7 +4,6 @@ import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Pixel;
 import backend.academy.fractal.model.Rect;
 import backend.academy.fractal.render.MultiThreadRenderer;
-import backend.academy.fractal.render.OneThreadRenderer;
 import backend.academy.fractal.render.Renderer;
 import backend.academy.fractal.transformation.Transformation;
 import org.junit.jupiter.api.Test;
