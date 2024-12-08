@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class FractalGeneratorFactoryTest {
 
     @Test
-    void createFractalGenerator_FromFile_CorrectlyCreatesGenerator() {
+    void checkFractalGeneratorCorrectlyFromSampleConfigFile() {
         // given
         String configFilePath = "sample_application.yaml";
 
