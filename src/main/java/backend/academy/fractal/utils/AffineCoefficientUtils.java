@@ -1,4 +1,4 @@
-package backend.academy.fractal.utils;
+package backend.academy.fractal.util;
 
 import backend.academy.fractal.model.AffineCoefficient;
 import java.awt.Color;

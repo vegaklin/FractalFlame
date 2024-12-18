@@ -1,4 +1,4 @@
-package backend.academy.fractal.utils;
+package backend.academy.fractal.util;
 
 import backend.academy.fractal.model.FractalImage;
 import backend.academy.fractal.model.Pixel;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import lombok.experimental.UtilityClass;
-import static backend.academy.fractal.utils.AffineCoefficientUtils.generateRandomAffineCoefficients;
+import static backend.academy.fractal.util.AffineCoefficientUtils.generateRandomAffineCoefficients;
 
 @UtilityClass
 public class RendererUtils {

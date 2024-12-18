@@ -3,6 +3,9 @@ package backend.academy.fractal.model;
 public record FractalImage(Pixel[] data, int width, int height) {
 
     public static FractalImage create(int width, int height) {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Width and height must be positive.");
+        }
         Pixel[] data = new Pixel[width * height];
         for (int i = 0; i < width * height; i++) {
             data[i] = new Pixel(0, 0, 0, 0, 0);
