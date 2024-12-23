@@ -11,4 +11,6 @@ public class FractalConstants {
 
     public static final int STEPS_FOR_CORRECTION = 20;
     public static final float HSB_COLOR_COEFFICIENT = 0.5f;
+
+    public static final int THREAD_WAITING_TIME = 15;
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.log4j.Log4j2;
+import static backend.academy.fractal.constant.FractalConstants.THREAD_WAITING_TIME;
 
 @Log4j2
 public class MultiThreadRenderer extends FractalRenderer {
@@ -39,7 +40,7 @@ public class MultiThreadRenderer extends FractalRenderer {
         } finally {
             executor.shutdown();
             try {
-                if (!executor.awaitTermination(15, TimeUnit.MINUTES)) {
+                if (!executor.awaitTermination(THREAD_WAITING_TIME, TimeUnit.MINUTES)) {
                     executor.shutdownNow();
                     if (!executor.awaitTermination(1, TimeUnit.MINUTES)) {
                         log.error("The threads didn't finish on time!");
