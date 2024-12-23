@@ -39,7 +39,7 @@ public class MultiThreadRenderer extends FractalRenderer {
         } finally {
             executor.shutdown();
             try {
-                if (!executor.awaitTermination(1, TimeUnit.HOURS)) {
+                if (!executor.awaitTermination(15, TimeUnit.MINUTES)) {
                     executor.shutdownNow();
                     if (!executor.awaitTermination(1, TimeUnit.MINUTES)) {
                         log.error("The threads didn't finish on time!");
