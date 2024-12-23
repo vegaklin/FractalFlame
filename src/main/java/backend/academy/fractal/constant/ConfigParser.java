@@ -28,43 +28,50 @@ public class ConfigParser {
             throw new IllegalArgumentException("Configuration file not found: " + filePath);
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            String line;
-            String currentKey = null;
-            List<String> currentListValues = new ArrayList<>();
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) {
-                    continue;
-                }
-                if (line.endsWith(":")) {
-                    currentKey = line.substring(0, line.length() - 1).trim();
-                } else if (line.startsWith("- ")) {
-                    currentListValues.add(line.substring(2).trim());
-                } else {
-                    if (currentKey != null && !currentListValues.isEmpty()) {
-                        listProperties.put(currentKey, List.copyOf(currentListValues));
-                        currentKey = null;
-                        currentListValues.clear();
-                    }
-                    int colonIndex = line.indexOf(':');
-                    if (colonIndex != -1) {
-                        String key = line.substring(0, colonIndex).trim();
-                        String value = line.substring(colonIndex + 1).trim();
-                        if (value.startsWith("\"") && value.endsWith("\"") && value.length() > 1) {
-                            value = value.substring(1, value.length() - 1);
-                        }
-                        properties.put(key, value);
-                    }
-                }
-            }
-            if (!currentListValues.isEmpty()) {
-                listProperties.put(currentKey, List.copyOf(currentListValues));
-            }
-
+            parseConfigFile(reader);
         } catch (IOException e) {
             log.error("Error reading configuration file: ", e);
             throw new RuntimeException("Failed to load configuration file: ", e);
+        }
+    }
+
+    private void parseConfigFile(BufferedReader reader) throws IOException {
+        String line;
+        String currentKey = null;
+        List<String> currentListValues = new ArrayList<>();
+
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+            if (line.endsWith(":")) {
+                currentKey = line.substring(0, line.length() - 1).trim();
+            } else if (line.startsWith("- ")) {
+                currentListValues.add(line.substring(2).trim());
+            } else {
+                if (currentKey != null && !currentListValues.isEmpty()) {
+                    listProperties.put(currentKey, List.copyOf(currentListValues));
+                    currentKey = null;
+                    currentListValues.clear();
+                }
+                processSimpleLine(line);
+            }
+        }
+        if (!currentListValues.isEmpty()) {
+            listProperties.put(currentKey, List.copyOf(currentListValues));
+        }
+    }
+
+    void processSimpleLine(String line) {
+        int colonIndex = line.indexOf(':');
+        if (colonIndex != -1) {
+            String key = line.substring(0, colonIndex).trim();
+            String value = line.substring(colonIndex + 1).trim();
+            if (value.startsWith("\"") && value.endsWith("\"") && value.length() > 1) {
+                value = value.substring(1, value.length() - 1);
+            }
+            properties.put(key, value);
         }
     }
 
