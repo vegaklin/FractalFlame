@@ -25,6 +25,7 @@ public class ConfigParser {
     private void loadConfig(String filePath) {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
         if (inputStream == null) {
+            log.error("Configuration file not found: {}", filePath);
             throw new IllegalArgumentException("Configuration file not found: " + filePath);
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
